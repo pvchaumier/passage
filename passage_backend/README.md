@@ -1,0 +1,14 @@
+# Guide
+
+## To install
+
+The database is a simple sqlite DB so nothing to do on that side.
+
+It is better to create a virtualenv (with pew for instance) but it is up to you.
+
+Then once it is sourced, run `pip install -r requirements.txt` in the folder containing the requirements.txt file.
+
+Run `./manage.py migrate`
+
+You should be OK now :D
+
