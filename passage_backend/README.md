@@ -12,3 +12,9 @@ Run `./manage.py migrate`
 
 You should be OK now :D
 
+
+## Launch local webserver
+
+Run `./manage.py runserver`
+
+You can go to local_ip:port/docs for an interactive exploration of the API
