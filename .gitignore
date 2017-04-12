@@ -1,0 +1,32 @@
+# Django
+.idea
+db.sqlite3
+.env
+.coverage
+staticfiles
+.sass-cache
+htmlcov
+
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+.sass-cache
+
+
+# C extensions
+*.so
+
+
+# IPython notebook
+.ipynb_checkpoints
+
+
+# Mac Specific
+.DS_Store
+
+
+# Sublime Specific
+*.sublime-project
+*.sublime-workspace
