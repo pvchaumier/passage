@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 
     # vendor apps
     'rest_framework',
+    'rest_framework_swagger',
 
     # our apps
     'passage_backend.message',
