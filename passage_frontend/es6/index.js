@@ -205,10 +205,43 @@ const app = new Vue({
       return messageGroups
     }
   },
+})
+
+const messengerContentEditableInput = `
+  <div class="_5rp7 _5rp8">
+    <div class="_1p1t">
+      <div class="_1p1v" id="placeholder-9igde">
+      Type a message...</div>
+    </div>
+    <div class="_5rpb">
+      <div aria-autocomplete="list" aria-describedby="placeholder-9igde" aria-expanded="false" aria-haspopup="false" aria-label="Type a message..." aria-owns="js_1yt" class="_5rpu" contenteditable="true" data-interaction-root-id="_c1m" role="combobox" spellcheck="true" tabindex="0" style="outline: none; white-space: pre-wrap; word-wrap: break-word;">
+      </div>
+    </div>
+  </div>
+`
+
+const inputApp = new Vue({
+  el: '#inputBlock',
+
+  data: {
+    newMessageText: ''
+  },
+
+  // template: messengerContentEditableInput,
+  template: `
+    <div class="_5rp7 _5rp8">
+      <input
+        autofocus
+        placeholder="Type a message..." 
+        v-model="newMessageText"
+        @keyup.enter="sendNewMessage"
+      >
+    </div>
+  `,
 
   methods: {
     sendNewMessage: function () {
-      this.messages.push({ text: this.newMessageText, fromUser: true })
+      app.messages.push({ text: this.newMessageText, fromUser: true })
       this.newMessageText = ''
     }
   }
