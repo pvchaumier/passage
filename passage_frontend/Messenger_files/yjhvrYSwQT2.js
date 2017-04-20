@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["+Ik08"]); }
+
+__d('PagesMessagingMercuryChatTabState',['immutable'],(function a(b,c,d,e,f,g){'use strict';var h,i;h=babelHelpers.inherits(j,c('immutable').Record({pagesGreetingShouldShow:false,pagesGreetingContent:null,sayHelloMessage:null,userPromptMessage:null,pagesMessengerNullStateGK:false,pageResponsiveness:null,coverData:null,connectionContext:null}));i=h&&h.prototype;function j(){h.apply(this,arguments);}f.exports=j;}),null);

@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["unYMr"]); }
+
+__d('MessengerLightweightActionUtils',['MercuryAttachmentType'],(function a(b,c,d,e,f,g){'use strict';function h(k){return !!(k&&k.attach_type===c('MercuryAttachmentType').SHARE&&k.share&&k.share.target&&k.share.target.lwa_type);}function i(k){var l=k.attachments;return !!(l&&l.length===1&&h(l[0]));}function j(k){return k.attachments[0].share.title;}f.exports={isLWAMessage:i,isLWAAttachment:h,getCollapsedLWAText:j};}),null);

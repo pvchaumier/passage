@@ -1,0 +1,3 @@
+if (self.CavalryLogger) { CavalryLogger.start_js(["1OjK2"]); }
+
+__d("XPagesManagerNotificationsController",["XController"],(function a(b,c,d,e,f,g){f.exports=c("XController").create("\/{page_token}\/notifications\/",{page_token:{type:"String",required:true},business_id:{type:"Int"},cursor:{type:"String"},field_type:{type:"Int"},section:{type:"Enum",enumType:1},subsection:{type:"String"},entry_point:{type:"Enum",enumType:1},proposal_ids:{type:"IntVector"},default_cta:{type:"String"},local_landing:{type:"Int"},website_landing:{type:"Int"},campaign_id:{type:"Int"},ref:{type:"String"},target_story:{type:"String"},content_id:{type:"Int"}});}),null);
