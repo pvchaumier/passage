@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Passage</title>
+</head>
+<body>
+
+<h1>Conversation</h1>
+
+<div id="messengerapp">
+  <ul>
+    <li 
+      v-for="msg in messages"
+      v-bind:class="msg.fromSender ? 'sender' : 'receiver'"
+    >
+      {{ msg.text }}
+    </div>
+    </li>
+  </ul>
+
+  <input 
+    placeholder="Message" 
+    v-model="newMessageText"
+    @keyup.enter="sendNewMessage"
+  >
+</div>
+
+<script src="https://unpkg.com/vue"></script>
+<script>
+var app = new Vue({
+  el: '#messengerapp',
+  
+  data: {
+    newMessageText: "",
+    messages: [
+      { text: "test", fromSender: true },
+      { text: "test2", fromSender: false },
+    ]
+  },
+
+  methods: {
+    sendNewMessage: function() {
+      console.log("test");
+      this.messages.push({ text: this.newMessageText, fromSender: true });
+      this.newMessageText = "";
+    }
+  }
+});
+</script>
+</body>
+</html>
