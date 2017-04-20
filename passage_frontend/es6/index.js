@@ -139,8 +139,6 @@ const app = new Vue({
   `,
 
   data: {
-    newMessageText: '',
-
     robotIsTyping: false,
 
     messages: [
@@ -148,7 +146,7 @@ const app = new Vue({
       { text: 'test2', fromUser: false, lastSeen: true },
       { text: 'test3', fromUser: false, lastSeen: true },
       { text: 'test4', fromUser: false, lastSeen: true },
-      { text: 'test56efWWW', fromUser: false, lastSeen: true },
+      { text: 'test56efWWW', fromUser: false, lastSeen: true }
     ]
   },
 
@@ -204,7 +202,7 @@ const app = new Vue({
 
       return messageGroups
     }
-  },
+  }
 })
 
 const messengerContentEditableInput = `

@@ -135,8 +135,6 @@ const app = new Vue({
   `,
 
   data: {
-    newMessageText: '',
-
     robotIsTyping: false,
 
     messages: [{ text: 'test', fromUser: true, lastSeen: false }, { text: 'test2', fromUser: false, lastSeen: true }, { text: 'test3', fromUser: false, lastSeen: true }, { text: 'test4', fromUser: false, lastSeen: true }, { text: 'test56efWWW', fromUser: false, lastSeen: true }]
