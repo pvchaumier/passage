@@ -25,4 +25,8 @@ npm install
 // run all that shit
 npm run start (~gulp)
 
+The main vue script is in es6/index.js
+
+Do not edit the script in dist/js/index.js
+
 
