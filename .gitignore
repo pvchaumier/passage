@@ -30,3 +30,5 @@ __pycache__/
 # Sublime Specific
 *.sublime-project
 *.sublime-workspace
+
+passage_frontend/node_modules/*

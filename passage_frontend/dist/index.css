@@ -1,0 +1,108 @@
+@keyframes jsm-typing-indicator-anim {
+    0% {
+      transform: translate(0, 0);
+    }
+    20% {
+      transform: translate(0, -0.5em);
+    }
+    40% {
+      transform: translate(0, 0);
+    }
+}
+@-webkit-keyframes jsm-typing-indicator-anim {
+    0% {
+      -webkit-transform: translate(0, 0);
+    }
+    20% {
+      -webkit-transform: translate(0, -0.5em);
+    }
+    40% {
+      -webkit-transform: translate(0, 0);
+    }
+}
+
+/**
+  Additional message bubble class for the left user's typing indicator.
+*/
+.jsm-typing-indicator span {
+  background: #8b858c;
+  height: 0.45em;
+  width: 0.45em;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.25em;
+  -webkit-animation: jsm-typing-indicator-anim 2s infinite;
+  animation: jsm-typing-indicator-anim 2s infinite;
+}
+.jsm-typing-indicator span:nth-child(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+.jsm-typing-indicator span:nth-child(2) {
+  -webkit-animation-delay: 0.15s;
+  animation-delay: 0.15s;
+}
+.jsm-typing-indicator span:nth-child(3) {
+  -webkit-animation-delay: 0.3s;
+  animation-delay: 0.3s;
+  margin-right: 0;
+}
+
+/**
+  Additional message bubble class for the left user's typing indicator.
+*/
+.jsm-chat-message {
+  padding: 0.38em 0.7em;
+  border-radius: 1.5em;
+  margin-bottom: 0.15em;
+  font-size: 95%;
+  max-width: 75%;
+  transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out;
+  transform: translateY(0);
+  position: relative;
+  z-index: 10;
+}
+.jsm-chat-message.jsm-left {
+  float: left;
+  background: #f1f0f0;
+  border: 1px solid #f1f0f0;
+  margin-left: 2.8em;
+}
+.jsm-chat-message.jsm-left.jsm-has-previous {
+  border-top-left-radius: 0.25em;
+}
+.jsm-chat-message.jsm-left.jsm-has-next {
+  border-bottom-left-radius: 0.25em;
+}
+.jsm-chat-message.jsm-right {
+  float: right;
+  background: #007aff;
+  border: 1px solid #007aff;
+  color: #fff;
+  margin-right: 5%;
+}
+.jsm-chat-message.jsm-right.jsm-has-previous {
+  border-top-right-radius: 0.25em;
+}
+.jsm-chat-message.jsm-right.jsm-has-next {
+  border-bottom-right-radius: 0.25em;
+}
+.jsm-chat-message.jsm-right .jsm-status {
+  position: absolute;
+  font-size: 76.92%;
+  right: -1.5em;
+  bottom: 0;
+  width: 1.2em;
+  height: 1.2em;
+  border-radius: 50%;
+}
+.jsm-chat-message.jsm-quickreply {
+  opacity: 0;
+  transform: translateY(1em);
+}
+
+.no-wrap-space {
+  white-space: nowrap !important;
+}
+
+
