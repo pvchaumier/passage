@@ -10,16 +10,16 @@
 
 <div id="messengerapp">
   <ul>
-    <li 
+    <li
       v-for="msg in messages"
       v-bind:class="msg.fromSender ? 'sender' : 'receiver'"
     >
       {{ msg.text }}
-    </div>
     </li>
   </ul>
 
-  <input 
+  <input
+    autofocus
     placeholder="Message" 
     v-model="newMessageText"
     @keyup.enter="sendNewMessage"
@@ -41,7 +41,6 @@ var app = new Vue({
 
   methods: {
     sendNewMessage: function() {
-      console.log("test");
       this.messages.push({ text: this.newMessageText, fromSender: true });
       this.newMessageText = "";
     }
