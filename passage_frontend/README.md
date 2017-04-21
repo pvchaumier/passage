@@ -16,17 +16,20 @@ Once this is done,
 
 $ cd passage_frontend
 
-// install gulp
-npm run install (~npm install gulp-cli -g see the script in package.json)
+// install global dependencies
+npm run install ( see the script in package.json)
 
 // install dev dependencies
 npm install
 
 // run all that shit
-npm run start (~gulp)
+npm run start ( see the script in package.json)
 
-The main vue script is in es6/index.js
+The main vue script is in es6/vue.js
+the master (controller) script is in master.js
 
-Do not edit the script in dist/js/index.js
+the root script linking both is in index.js
+
+Do not edit the scripts in dist/js, edit only the scripts in /es6 !
 
 
