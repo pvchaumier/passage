@@ -1,7 +1,8 @@
 var gulp = require('gulp')
-var babel = require('gulp-babel')
+var browserify = require('browserify')
 var sourcemaps = require('gulp-sourcemaps')
-var concat = require('gulp-concat')
+var source = require('vinyl-source-stream')
+var buffer = require('vinyl-buffer')
 var watch = require('gulp-watch')
 var browserSync = require('browser-sync').create()
 
@@ -18,34 +19,28 @@ gulp.task('browser-sync', function () {
 })
 const babelPath = 'es6/**/*.js'
 
-const runBabelAndReload = function () {
-  const compile = gulp.src(babelPath)
+const runBabelBundleAndReload = function () {
+  const compile = browserify({entries: 'es6/index.js', debug: true})
+    .transform('babelify', { presets: ['env'] })
+    .bundle()
+    .pipe(source('index.js'))
+    .pipe(buffer())
     .pipe(sourcemaps.init())
-    .pipe(babel())
-    .pipe(concat('index.js'))
-    .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.write('./maps'))
     .pipe(gulp.dest('dist/js'))
   browserSync.reload()
   return compile
 }
 
-gulp.task('babel', runBabelAndReload)
-
-// gulp.task('babel-and-reload', ['babel'], cb => {
-//   browserSync.reload()
-//   cb()
-// })
+gulp.task('babel', runBabelBundleAndReload)
 
 // the watch task
 gulp.task('watch', cb => {
   // their could be more watchers here ofc
   watch(babelPath, () => {
-    runBabelAndReload()
+    runBabelBundleAndReload()
       .pipe(watch(babelPath))
-      .on('end', function (stuff) {
-        console.log('yolo')
-        return cb(stuff)
-      })
+      .on('end', cb)
   })
 })
 
