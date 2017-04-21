@@ -1,3 +1,7 @@
-import { app, inputApp } from './vue.js'
+import { Vues } from './vue.js'
+import { Master } from './master.js'
 
-console.log(app)
+Master.run({
+  app: Vues.app,
+  inputApp: Vues.inputApp
+})
