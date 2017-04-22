@@ -18,7 +18,8 @@ export const texts = [
     text: "c'etait quoi deja ?"
   },
   {
-    text: '__input__2'
+    text: '__input__2',
+    waitTime: 0.1
   },
   {
     text: 'Hm ha oui.'

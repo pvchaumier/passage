@@ -125,94 +125,7 @@ Vue.component('last-seen-message-by-robot', {
   template: `<span class="_4jzq _jf4 _jf5"><img alt="Seen by Patrick Bateman at 4:35pm" class="_jf2 img" src="./Messenger_files/17499392_1651165904924361_806913937995688309_n.png" title="Seen by Patrick"></span>`
 })
 
-export const app = new Vue({
-  el: '#js_1',
-
-  template: `
-    <div>
-      <h4 class="_497p _2lpt">
-        <time class="_3oh-"><span id='time'>{{now}}</span></time>
-      </h4>
-      <message-groups-iterator v-bind:messageGroups="messageGroups"
-        v-bind:robotIsTyping="robotIsTyping"
-      >
-      </message-groups-iterator >
-    </div>
-  `,
-
-  data: {
-    robotIsTyping: false,
-
-    messages: [
-      { text: 'coucou ?', fromUser: true, lastSeen: true }
-    ]
-  },
-
-  methods: {
-    addMessage (message) {
-      this.messages.push(message)
-    },
-    setRobotIsTyping (robotIsTyping) {
-      this.robotIsTyping = robotIsTyping
-    }
-  },
-
-  computed: {
-    'now' () {
-      const date = new Date()
-      return date.getHours() + ':' + date.getMinutes()
-    },
-
-    /**
-     * Group messages in a way we can construct
-     * the chat interface
-     * and add relevant metadata
-     */
-    'messageGroups' () {
-      const messageGroups = []
-
-      _.forEach(this.messages, function (message, key, messages) {
-        const lastMessageGroup = _.last(messageGroups)
-        const shouldCreateNewGroup = _.isEmpty(lastMessageGroup) ||
-          (lastMessageGroup.fromUser !== message.fromUser)
-
-        if (shouldCreateNewGroup) {
-          const newMessageGroup = {
-            messages: [message],
-            fromUser: message.fromUser
-          }
-
-          messageGroups.push(newMessageGroup)
-          return
-        }
-
-        lastMessageGroup.messages.push(message)
-      })
-
-      // Adding typing indicator if necessary
-      const lastMessageGroup = _.last(messageGroups)
-      const shouldCreateNewRobotGroup = _.isEmpty(lastMessageGroup) || lastMessageGroup.fromUser
-
-      if (shouldCreateNewRobotGroup) {
-        const newRobotMessageGroup = {
-          messages: [],
-          fromUser: false,
-          isTyping: this.robotIsTyping
-        }
-
-        messageGroups.push(newRobotMessageGroup)
-
-        return messageGroups
-      }
-
-      lastMessageGroup.isTyping = this.robotIsTyping
-
-      return messageGroups
-    }
-  }
-})
-
-// For info
+// For info regular input styling
 const messengerContentEditableInput = `
   <div class="_5rp7 _5rp8">
     <div class="_1p1t">
@@ -226,29 +139,130 @@ const messengerContentEditableInput = `
   </div>
 `
 
-export const inputApp = new Vue({
-  el: '#inputBlock',
 
-  data: {
-    newMessageText: ''
-  },
+export class MessengerVue {
+  constructor () {
+    const self = this
+    this.onMessageInput = []
 
-  // template: messengerContentEditableInput,
-  template: `
-    <div class="_5rp7 _5rp8">
-      <input
-        autofocus
-        placeholder="Type a message..." 
-        v-model="newMessageText"
-        @keyup.enter="sendNewMessage"
-      >
-    </div>
-  `,
+    this.mainVue = new Vue({
+      el: '#js_1',
 
-  methods: {
-    sendNewMessage: function () {
-      app.messages.push({ text: this.newMessageText, fromUser: true })
-      this.newMessageText = ''
-    }
+      template: `
+        <div>
+          <h4 class="_497p _2lpt">
+            <time class="_3oh-"><span id='time'>{{now}}</span></time>
+          </h4>
+          <message-groups-iterator v-bind:messageGroups="messageGroups"
+            v-bind:robotIsTyping="robotIsTyping"
+          >
+          </message-groups-iterator >
+        </div>
+      `,
+
+      data: {
+        robotIsTyping: false,
+
+        messages: [
+          { text: 'coucou ?', fromUser: true, lastSeen: true }
+        ]
+      },
+
+      methods: {
+        addMessage (message) {
+          this.messages.push(message)
+        },
+        setRobotIsTyping (robotIsTyping) {
+          this.robotIsTyping = robotIsTyping
+        }
+      },
+
+      computed: {
+        'now' () {
+          const date = new Date()
+          return date.getHours() + ':' + date.getMinutes()
+        },
+
+        /**
+         * Group messages in a way we can construct
+         * the chat interface
+         * and add relevant metadata
+         */
+        'messageGroups' () {
+          const messageGroups = []
+
+          _.forEach(this.messages, function (message, key, messages) {
+            const lastMessageGroup = _.last(messageGroups)
+            const shouldCreateNewGroup = _.isEmpty(lastMessageGroup) ||
+              (lastMessageGroup.fromUser !== message.fromUser)
+
+            if (shouldCreateNewGroup) {
+              const newMessageGroup = {
+                messages: [message],
+                fromUser: message.fromUser
+              }
+
+              messageGroups.push(newMessageGroup)
+              return
+            }
+
+            lastMessageGroup.messages.push(message)
+          })
+
+          // Adding typing indicator if necessary
+          const lastMessageGroup = _.last(messageGroups)
+          const shouldCreateNewRobotGroup = _.isEmpty(lastMessageGroup) || lastMessageGroup.fromUser
+
+          if (shouldCreateNewRobotGroup) {
+            const newRobotMessageGroup = {
+              messages: [],
+              fromUser: false,
+              isTyping: this.robotIsTyping
+            }
+
+            messageGroups.push(newRobotMessageGroup)
+
+            return messageGroups
+          }
+
+          lastMessageGroup.isTyping = this.robotIsTyping
+
+          return messageGroups
+        }
+      }
+    })
+
+    this.onMessageInput.push(this.mainVue.addMessage)
+
+    this.inputVue = new Vue({
+      el: '#inputBlock',
+
+      data: {
+        newMessageText: ''
+      },
+
+      // template: messengerContentEditableInput,
+      template: `
+        <div class="_5rp7 _5rp8">
+          <input
+            autofocus
+            placeholder="Type a message..." 
+            v-model="newMessageText"
+            @keyup.enter="onNewMessageInput"
+          >
+        </div>
+      `,
+
+      methods: {
+        // sendNewMessage (text) {
+        //   self.mainVue.addMessage({ text: text, fromUser: true })
+        // },
+        onNewMessageInput () {
+          const text = this.newMessageText
+          _.each(self.onMessageInput, func => func({ text: text, fromUser: true }))
+          this.newMessageText = ''
+        }
+      }
+    })
   }
-})
+}
