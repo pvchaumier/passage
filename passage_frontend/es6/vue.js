@@ -1,5 +1,3 @@
-export const Vues = {}
-
 Vue.component('message-groups-iterator', {
   props: [
     'messageGroups'
@@ -127,7 +125,7 @@ Vue.component('last-seen-message-by-robot', {
   template: `<span class="_4jzq _jf4 _jf5"><img alt="Seen by Patrick Bateman at 4:35pm" class="_jf2 img" src="./Messenger_files/17499392_1651165904924361_806913937995688309_n.png" title="Seen by Patrick"></span>`
 })
 
-Vues.app = new Vue({
+export const app = new Vue({
   el: '#js_1',
 
   template: `
@@ -148,6 +146,15 @@ Vues.app = new Vue({
     messages: [
       { text: 'coucou ?', fromUser: true, lastSeen: true }
     ]
+  },
+
+  methods: {
+    addMessage (message) {
+      this.messages.push(message)
+    },
+    setRobotIsTyping (robotIsTyping) {
+      this.robotIsTyping = robotIsTyping
+    }
   },
 
   computed: {
@@ -205,7 +212,8 @@ Vues.app = new Vue({
   }
 })
 
-Vues.messengerContentEditableInput = `
+// For info
+const messengerContentEditableInput = `
   <div class="_5rp7 _5rp8">
     <div class="_1p1t">
       <div class="_1p1v" id="placeholder-9igde">
@@ -218,7 +226,7 @@ Vues.messengerContentEditableInput = `
   </div>
 `
 
-Vues.inputApp = new Vue({
+export const inputApp = new Vue({
   el: '#inputBlock',
 
   data: {
