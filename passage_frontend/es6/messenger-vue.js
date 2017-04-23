@@ -129,7 +129,7 @@ Vue.component('last-seen-message-by-robot', {
 const messengerContentEditableInput = `
   <div class="_5rp7 _5rp8">
     <div class="_1p1t">
-      <div class="_1p1v" id="placeholder-9igde" style="width: 100%;margin-left: -47px;padding: 20px 10px;">
+      <div class="_1p1v" id="placeholder-9igde" style="width: 104%;margin-left: -55px;padding: 20px 10px;margin-top: -14px;">
       Type a message...</div>
     </div>
     <div class="_5rpb">
@@ -247,7 +247,7 @@ export class MessengerVue {
           <input
             autofocus
             placeholder="Type a message..." 
-            style="width: 100%;margin-left: -47px; padding: 20px 10px;"
+            style="width: 104%;margin-left: -55px;padding: 20px 10px;margin-top: -14px;"
             v-model="newMessageText"
             @keyup.enter="onNewMessageInput"
           >
