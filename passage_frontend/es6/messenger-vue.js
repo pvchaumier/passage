@@ -249,6 +249,7 @@ export class MessengerVue {
             placeholder="Type a message..." 
             v-model="newMessageText"
             @keyup.enter="onNewMessageInput"
+            style="width: 100%;margin-left: -47px;padding: 20px;"
           >
         </div>
       `,
